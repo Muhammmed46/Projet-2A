@@ -1,0 +1,17 @@
+# Ignorer les fichiers lourds (déjà configuré)
+*.bin
+*.xml
+*.bag
+*.pdf
+
+# Ignorer un dossier spécifique contenant tes données brutes
+velodyne_points/
+donnees_kitti/
+data/
+P2-RM-10-260504_Presentation-projet.png/
+
+
+# Ignorer les dossiers cachés de configuration ou d'environnement (ex: Python)
+.vscode/
+__pycache__/
+.venv/
