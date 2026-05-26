@@ -10,16 +10,16 @@ DOSSIER_VELODYNE = "C:\\Users\\bozz1\\OneDrive\\Documents\\ENSISA\\2A\\Projet D�
 FICHIER_XML = "C:\\Users\\bozz1\\OneDrive\\Documents\\ENSISA\\2A\\Projet Détection d’éléments dynamiques dans les mesures LiDAR 3D\\data\\2011_09_26\\2011_09_26_drive_0002_sync\\tracklet_labels.xml"
 
 
-# Charger toutes les boîtes de la séquence
-tracklets = parseXML('C:\\Users\\bozz1\\OneDrive\\Documents\\ENSISA\\2A\\Projet Détection d’éléments dynamiques dans les mesures LiDAR 3D\\data\\2011_09_26\\2011_09_26_drive_0002_sync\\tracklet_labels.xml')
-
-
 # =====================================================================
 # 2. CHARGEMENT ET TRI DES FICHIERS LIDAR (.BIN)
 # =====================================================================
 # On liste et on trie par ordre alphabétique pour respecter la chronologie
 fichiers_bin = sorted([f for f in os.listdir(DOSSIER_VELODYNE) if f.endswith('.bin')])
 print(f"[{len(fichiers_bin)} fichiers .bin trouvés dans le dossier]")
+
+# Charger toutes les boîtes de la séquence
+tracklets = parseXML(FICHIER_XML)
+
 
 # =====================================================================
 # 3. BOUCLE PRINCIPALE : TRAITEMENT FRAME PAR FRAME
@@ -52,11 +52,11 @@ for index_frame, nom_fichier in enumerate(fichiers_bin):
     # =================================================================
     
     # Exemple pour voir que le script tourne (on affiche juste les 5 premiers points)
-    # print("Exemple de points (X, Y, Z) :", points_xyz[:5])
+    print("Exemple de points (X, Y, Z) :", points_xyz[:5])
     
     # Pour tester ton script au début sans bloquer ton PC, tu peux enlever le dièse ci-dessous
-    break        
-
+    break    
+    
 for tracklet in tracklets:
     objet_type = tracklet.objectType  # 'Car', 'Pedestrian'...
     h, w, l = tracklet.size           # Dimensions de la boîte
@@ -70,4 +70,5 @@ for tracklet in tracklets:
         
         # Ici, tu as toutes les coordonnées pour créer ta boîte 3D 
         # et tester si tes points LiDAR sont dedans à la 'frame_actuelle' !
+    
 
